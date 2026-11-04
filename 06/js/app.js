@@ -173,11 +173,10 @@ if (formEdit) {
             angkatan: parseInt(editAngkatan.value, 10),
             email: editEmail.value.trim()
         };
-
         try {
              // Percobaan 6-3 Langkah 5
              const res = await fetch(`${API_URL}?id=${id}`, {
-                method: 'PUT},
+                method: 'PUT',
                 headers: {'Content-type': 'application/json'},
                 body: JSON.stringify(payload)
         });
@@ -202,7 +201,6 @@ if (formTambah) {
     formTambah.addEventListener('submit', async function (event) {
         // Percobaan 6-2 Langkah 3 
         event.preventDefault();
-        const dataMahasiswa = {
             // Percobaan 6-2 Langkah 4
             const dataMahasiswa = {
                 npm: document.getElementById('npm').value.trim(),
@@ -212,14 +210,12 @@ if (formTambah) {
                 email: document.getElementById('email').value.trim()
             };
 
-        };
-
         try {
             // Percobaan 6-2 Langkah 5
             const response = await fetch(API_URL, {
                 method: 'POST',
                 headers: { 'Content-type': 'application/json'},
-                body: JSON.stingify(dataMahasiswa) 
+                body: JSON.stringify(dataMahasiswa) 
             });
             const result = await response.json();
             
@@ -249,7 +245,8 @@ async function deleteMahasiswa(id, nama) {
         const result = await response.json();
         
         // Percobaan 6-4 Langkah 4
-        if (response.ok $$ result.status === 'success') {
+        if (response.ok && result.status === 'success') {
+            showAlert(result.message, 'success');
             loadMahasiswa(); //refresh data otomatis
 
         } else {
